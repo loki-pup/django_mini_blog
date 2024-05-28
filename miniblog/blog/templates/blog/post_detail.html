@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ post.title }}</h1>
+
+  <p><strong>Post date</strong> {{ post.post_date }}</p>
+  <p><strong>Author:</strong> <a href="{{post.author.get_absolute_url}}">{{ post.author }}</a></p>
+  <!-- author detail link not yet defined -->
+  <p><strong>Description:</strong></p> 
+  <p>{{ post.description }}</p>
+  
+
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Comments</h4>
+
+    {% for copy in post.comment_set.all %}
+      <hr />
+      <p>{{ copy.author }} ({{copy.post_time}}) - {{copy.description}}</p>
+    {% endfor %}
+    <button>Add a new comment</button>
+  </div>
+{% endblock %}
